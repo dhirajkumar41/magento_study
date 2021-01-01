@@ -1,0 +1,112 @@
+Categories - The Products in Category section lists the products that are currently assigned to the category. 
+
+
+Country of Manufacture -Steps to reproduce
+
+    In the admin, under Stores > Configuration > General > Allow Countries, select a few countries and save the configuration
+    Go to "Stores > Attributes > Product", and click on the "country_of_manufacture" attribute
+
+Expected result
+
+    All countries appear as available option values
+
+Actual result
+
+    Only the allowed countries appears as available option values
+
+It's more a design issue than an actual bug.
+
+Setting specific countries in the general configuration (Stores > Configuration > General > Allow Countries) will filter available countries when a customer wants to select a country in his address but it will also filter the list of available options in the "country_of_manufacture" attribute. These two should be independant.
+
+
+
+Discontinued  - 
+
+    Discontinued Product's visibility can be decided i.e whether it needs to be accessible via direct URL only or will be shown in category/search pages
+    Discontinued Product URL will be removed from sitemap if chosen to be visible via direct URL only
+    Discontinued Product will show alternative products either from manually selected products, related products or from sub category products
+
+
+ Redirect to Product SKU  -
+ Your store can be configured to automatically generate a permanent redirect whenever the URL key of a product or category changes. In the Search Engine Optimization section, the checkbox below the URL key indicates if permanent redirects are enabled. If your store is already configured to automatically redirect catalog URLs, making a redirect is as easy as updating the URL key. The process to create an automatic redirect is the same for both products and categories.
+
+New Arrival =>
+them in their own “New Arrivals” category, but make it so that the cart will automatically display the newest products based on the product’s creation date, without the site admin having to manually assigned them into and out of a “New Arrivals” category.
+
+In order to create “New Arrivals” functionality on my client’s Magento store (which is 1.1.6, but this code also works for all versions of Magento through the current 1.2.0.1), I created the following module. My approach was to override the normal category behavior for my “New Arrivals” category and display a custom product collection instead.
+
+Step 1: In the admin, create a category called “New Arrivals” and leave it empty.
+
+Step 2: Find the code that generates the product listings on the Category pages. Turns out the code that does this is in the class Mage_Catalog_Block_Product_List. Great. But now, in order to get the cart to do what we want, we have to override this class and add my own custom code to handle the creation of the product collection for the empty category “New Arrivals”. To do this, I created a new block file called Tridian_Newarrivals_Block_Newarrivals, which extends the original, and saved it here: app/code/local/Tridian/Newarrivals/Block/Newarrivals.php.
+
+Catalog Input Type for Store Owner - 	Determines the data type and input control that is used to manage the product from the store Admin. For a description of these options, see Attribute Input Types
+
+Pre-Order Note Output Place - Choose where to display the Pre-Order Note, using selectors. You can specify any valid selector. Also, you can determine several selectors separated by a comma. For example: .stock, .availability. This can be helpful when the output places differ on different pages. 
+
+
+ Set Product as New From - 
+ Move to the Set Product as New From option. You need to set the time period the product will be displayed as “New”.
+ 
+ Configurations -
+ https://docs.magento.com/user-guide/catalog/product-create-configurable.html
+ 
+ 
+ 
+ Product reviews -
+ help to build a sense of community, and are considered more credible than any advertising money can buy. In fact, some search engines give sites with product reviews a higher ranking than those without. For those who find your site by searching for a specific product, a product review is essentially the landing page of your store. Product reviews help people find your store, keep them engaged, and often lead to sales.
+ 
+ 
+  Country of Manufacture  -
+  Add Countries to country_of_manufacture list. There is a public function getAllOptions() which returns the array of all countries.
+  
+  Desc -
+  This is a Magento 2 module that adds the ability to add desciptions to product attributes. Add descriptions to configurable attributes and display them on your product view pages. Use attribute descriptions to help explain complex attributes to your customers. If you have unique attributes that need additional explanations beyond the attribute's name then this module will work for you. Attribute descriptions are stored in a new eav_attribute_description table.
+  
+  
+URL key
+
+The URL key is the part of a static URL that describes the product or category. When you create a product or category, an initial URL key is automatically generated, based on the name. To change the URL key, see the Search Engine Optimization section of the product information.
+
+The URL key should consist of lowercase characters with hyphens to separate words. A well-designed, “search engine friendly” URL key might include the product name and key words to improve the way it is indexed by search engines. The URL key can be configured to create an automatic redirect if the URL key changes.
+
+Meta Title
+
+To create a perfect meta title, make sure you follow the instructions below.
+
+    Keep it 50–60 characters long. Google cuts off the titles that don’t fit into a 512-pixel display and shows an ellipsis “…” instead.
+    The title should clearly describe what the page is about. Avoid generalization here.
+    Place the main keywords and phrases closer to the beginning of the title, and your brand/store name at the end*.
+    Use exact match keywords. The search engines read queries exactly as they are written, which means that a specific title has higher  chances of getting a click (e.g., casual green V-shape H&M jumper”, rather than for a generic one (“green jumper”).
+    Mention special offers (if any) – discounts, specials, free shipping, etc. – make the title more appealing, and entice the visitors to click on it.
+    Avoid duplication! Each product, category, CMS page should have unique meta data.
+    Include action words that reinforce the purchase intent: ‘buy’, ‘purchase’, ‘get’, ‘check out’, etc..
+
+Meta Description
+
+In the Meta Description section, coders are instructed on how to choose the best numbers of characters for page optimization. The limited characters are default at 255, but the optimal number should be between 150 - 160 characters. A description with medium numbers of characters can engage more clicks through the search other than attractive keywords.
+Meta Keywords
+
+For Meta Keywords, the number of characters are not limited. However, it does not mean overfilling the black with words. Stores should add closely-related keywords that best describe their products to inform web crawlers only.
+
+
+Related products
+
+The related products are the items suggested based on the current product. For each product, you can set one or more related products as your needs. The customers can get the similar products in the bottom of the Product Detail Page.
+
+up-sell products
+
+The up-sell products are suggested for the customers depending on the features of the current product. However, these items are greater, more favourite as well as better in the received benefits. 
+
+cross-sell products
+
+Cross-sell products are used to lead the customers to other categories at your shop. These items will be put right in the shopping cart before when starting the checkout process
+
+
+Customizable Options
+
+Adding customizable options to a product is an easy way to offer a selection of options with a variety of text, selection, and date input types. Customizable options are a good solution if your inventory needs are simple. However, because they are based on variations of a single SKU, they cannot be used to manage stock or as the basis of price rule conditions. If you have multiple products with the same options, you can set up one product and import the options to the other products
+
+
+As Magento 2 supports the Gift Message feature which will appear on the Shopping Cart page, merchants can configure gift message in the backend. It is proved that providing your shoppers with gift messages can increase the conversion rate. In fact, gift options bring the customers an amazing chance to give presents to their friends. Hence, more potential customers will be also attracted to come to your store.
+
+
